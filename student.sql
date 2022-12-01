@@ -27,7 +27,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `admin`
 --
-use student; 
+create database student;
+use student;
 
 CREATE TABLE `admin` (
   `ID` int(20) NOT NULL,
@@ -49,6 +50,7 @@ INSERT INTO `admin` (`ID`, `Username`, `Password`) VALUES
 --
 
 CREATE TABLE `signupdata` (
+  `ID` int(20) NOT NULL,
   `Username` varchar(10) NOT NULL,
   `MailID` varchar(20) NOT NULL,
   `Password` varchar(8) NOT NULL,
@@ -59,8 +61,8 @@ CREATE TABLE `signupdata` (
 -- Dumping data for table `signupdata`
 --
 
-INSERT INTO `signupdata` (`Username`, `MailID`, `Password`, `ConformPassword`) VALUES
-('Ashu', 'ashu@gmail.com', '12345', '12345');
+INSERT INTO `signupdata` (`ID`,`Username`, `MailID`, `Password`, `ConformPassword`) VALUES
+('159','test', 'test@gmail.com', '12345', '12345');
 
 -- --------------------------------------------------------
 
@@ -73,21 +75,41 @@ CREATE TABLE `studentinfo` (
   `Name` varchar(20) NOT NULL,
   `MobileNo` varchar(10) NOT NULL,
   `Gender` varchar(6) NOT NULL,
+  `FatherName` varchar(10) NOT NULL,
+  `MotherName` varchar(20) NOT NULL,
   `DOB` date NOT NULL,
   `Age` int(2) NOT NULL,
-  `Course 1` varchar(10) NOT NULL,
-  `Course 2` varchar(10) NOT NULL,
-  `Course 3` varchar(15) NOT NULL,
-  `Course 4` varchar(20) NOT NULL,
-   `Course 5` varchar(20) NOT NULL
+  `Course1` varchar(10) NOT NULL,
+  `Course2` varchar(10) NOT NULL,
+  `Course3` varchar(15) NOT NULL,
+  `Course4` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `studentinfo`
 --
 
-INSERT INTO `studentinfo` (`ID`, `Name`, `MobileNo`, `Gender`, `DOB`, `Age`, `Course 1`, `Course 2`, `Course 3`, `Course 4`, `Course 5`) VALUES
-(159, 'nirbhay makariye', '1234567890', 'male', '1981-10-19', 38, 'Math', 'Physics', 'Biology', 'ICT', 'English');
+INSERT INTO `studentinfo` (`ID`, `Name`, `MobileNo`, `Gender`, `FatherName`, `MotherName`, `DOB`, `Age`, `Course1`, `Course2`, `Course3`, `Course4`) VALUES
+(159, 'test user', '1234567890', 'male', 'test father', 'test mother', '2002-06-15', 20, 'Math', 'English', 'ICT', 'Physics');
+
+--
+-- Table structure for table `marks`
+--
+
+CREATE TABLE `marks` (
+  `ID` int(20) NOT NULL,
+  `Course1` int(20) NOT NULL,
+  `Course2` int(20) NOT NULL,
+  `Course3` int(20) NOT NULL,
+  `Course4` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `marks`
+--
+
+INSERT INTO `marks` (`ID`, `Course1`, `Course2`, `Course3`, `Course4`) VALUES
+(159,  '50', '85', '72', '42');
 
 --
 -- Indexes for dumped tables
@@ -98,6 +120,12 @@ INSERT INTO `studentinfo` (`ID`, `Name`, `MobileNo`, `Gender`, `DOB`, `Age`, `Co
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`ID`);
+  
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `signupdata`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `studentinfo`
@@ -105,6 +133,10 @@ ALTER TABLE `admin`
 ALTER TABLE `studentinfo`
   ADD PRIMARY KEY (`ID`);
 
+-- Indexes for table `marks`
+--
+ALTER TABLE `marks`
+  ADD PRIMARY KEY (`ID`);
 --
 -- AUTO_INCREMENT for dumped tables
 --
@@ -119,6 +151,12 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `studentinfo`
 --
 ALTER TABLE `studentinfo`
+  MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
+  
+--
+-- AUTO_INCREMENT for table `marks`
+--
+ALTER TABLE `marks`
   MODIFY `ID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=160;
 COMMIT;
 
